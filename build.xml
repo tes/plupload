@@ -86,17 +86,20 @@
 
 	<target name="build" depends="clean,build-jquery-widgets">
 		<!-- Concat multuple JS files together -->
-		<concat destfile="js/plupload.full.tmp.js">
+		<concat destfile="js/plupload.full.js">
 			<fileset dir="src/javascript" includes="plupload.js" />
-			<fileset dir="src/javascript" includes="plupload.gears.js" />
+			<!-- <fileset dir="src/javascript" includes="plupload.gears.js" /> -->
 			<fileset dir="src/javascript" includes="plupload.silverlight.js" />
 			<fileset dir="src/javascript" includes="plupload.flash.js" />
-			<fileset dir="src/javascript" includes="plupload.browserplus.js" />
+			<!-- <fileset dir="src/javascript" includes="plupload.browserplus.js" /> -->
 			<fileset dir="src/javascript" includes="plupload.html5.js" />
 			<fileset dir="src/javascript" includes="plupload.html4.js" />
 		</concat>
 
+		
+
 		<!-- Compress Plupload full and base using the YUI Compressor -->
+		<!--
 		<yuicompress infile="js/plupload.full.tmp.js" outfile="js/plupload.full.js" />
 		<yuicompress infile="src/javascript/plupload.js" outfile="js/plupload.js" />
 		<yuicompress infile="src/javascript/plupload.gears.js" outfile="js/plupload.gears.js" />
@@ -107,6 +110,7 @@
 		<yuicompress infile="src/javascript/plupload.html4.js" outfile="js/plupload.html4.js" />
 
 		<delete file="js/plupload.full.tmp.js" quiet="true" />
+		-->
 	</target>
 
 	<target name="release" depends="build">
