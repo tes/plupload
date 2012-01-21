@@ -698,7 +698,8 @@
 			if (obj.currentStyle) {
 				return obj.currentStyle[name];
 			} else if (window.getComputedStyle) {
-				return window.getComputedStyle(obj, null)[name];
+				var style = window.getComputedStyle(obj, null);
+				return style ? style[name] : undefined;
 			}
 		},
 
