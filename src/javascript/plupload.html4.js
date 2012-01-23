@@ -210,9 +210,8 @@
 
 						// Get result
 						result = el.body.innerHTML;
-						
-						// Assume no error
-						if (result) {
+
+ 					 	if (result.match(/success/)) {
 							currentFile.status = plupload.DONE;
 							currentFile.loaded = 1025;
 							currentFile.percent = 100;
@@ -221,7 +220,13 @@
 							up.trigger('FileUploaded', currentFile, {
 								response : result
 							});
-						}
+						} else {
+	                                        	up.trigger('Error', {
+								code : plupload.GENERIC_ERROR,
+								message : result,
+								file : currentFile
+							})                                                  
+                                                }
 					}, up.id);
 				} // end createIframe
 				
