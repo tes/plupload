@@ -465,7 +465,7 @@
 							});
 						}
 						
-						zIndex = parseInt(plupload.getStyle(browseButton, 'z-index'), 10);
+						zIndex = parseInt(plupload.getStyle(browseButton, 'zIndex'), 10);
 						if (isNaN(zIndex)) {
 							zIndex = 0;
 						}						
@@ -489,7 +489,7 @@
 			});
 			
 			uploader.bind("CancelUpload", function() {
-				if (xhr.abort) {
+				if (xhr && xhr.abort) {
 					xhr.abort();	
 				}
 			});

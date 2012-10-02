@@ -482,7 +482,7 @@
 			}
 
 			// Use getBoundingClientRect on IE 6 and IE 7 but not on IE 8 in standards mode
-			if (node && node.getBoundingClientRect && (navigator.userAgent.indexOf('MSIE') > 0 && doc.documentMode !== 8)) {
+			if (node && node.getBoundingClientRect && ((navigator.userAgent.indexOf('MSIE') > 0) && (doc.documentMode < 8))) {
 				nodeRect = getIEPos(node);
 				rootRect = getIEPos(root);
 
@@ -801,10 +801,10 @@
 				// undefined or not, key should match			
 				if (type[i].key === key || type[i].orig === callback) {
 										
-					if (obj.detachEvent) {
-						obj.detachEvent('on'+name, type[i].func);
-					} else if (obj.removeEventListener) {
+					if (obj.removeEventListener) {
 						obj.removeEventListener(name, type[i].func, false);		
+					} else if (obj.detachEvent) {
+						obj.detachEvent('on'+name, type[i].func);
 					}
 					
 					type[i].orig = null;
@@ -1269,7 +1269,7 @@
 			 * @method start
 			 */
 			start : function() {
-				if (this.state != plupload.STARTED) {
+				if (files.length && this.state != plupload.STARTED) {
 					this.state = plupload.STARTED;
 					this.trigger("StateChanged");	
 					
