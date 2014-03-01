@@ -1458,7 +1458,10 @@ define('moxie/core/utils/Dom', ['moxie/core/utils/Env'], function(Env) {
 		if (obj.currentStyle) {
 			return obj.currentStyle[name];
 		} else if (window.getComputedStyle) {
-			return window.getComputedStyle(obj, null)[name];
+      // wikispaces: computed properties aren't always available if the element is hidden
+      var style = window.getComputedStyle(obj, null);
+			return style ? style[name] : undefined;
+			//return window.getComputedStyle(obj, null)[name];
 		}
 	};
 
@@ -10682,3 +10685,4 @@ Globally exposed namespace with the most frequently used public classes and hand
 	}
 	return o;
 })();
+
