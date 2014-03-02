@@ -115,6 +115,12 @@ task("mkjs", [], function (params) {
 
 	fs.writeFileSync(targetDir + "/plupload.full.min.js", code);
 
+  code = "";
+	code += fs.readFileSync(targetDir + "/moxie.js") + "\n";
+	code += fs.readFileSync("src/plupload.js");
+
+	fs.writeFileSync(targetDir + "/plupload.full.js", code);
+
 	// Add I18n files
 	process.env.auth = "moxieuser:12345";
 	process.env.to = "./js/i18n";
